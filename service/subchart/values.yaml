@@ -1,0 +1,2 @@
+nginx:
+  fullnameOverride: demo-nginx
