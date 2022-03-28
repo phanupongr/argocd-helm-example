@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: helm-native-with-values-file-application
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: default
+    name: in-cluster
+  project: default
+  source:
+    helm:
+      valueFiles:
+      - values.yaml
+    chart: nginx
+    repoURL: https://charts.bitnami.com/bitnami
+    targetRevision: 9.9.6
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
